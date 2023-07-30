@@ -34,8 +34,9 @@
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
   function execute() {
-    return gapi.client.sheets.spreadsheets.get({
-      "spreadsheetId": SPREADSHEET_ID
+    return gapi.client.sheets.spreadsheets.values.get({
+      "spreadsheetId": SPREADSHEET_ID,
+      "range": 'Locations',
     })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
@@ -45,6 +46,7 @@
   }
   gapi.load("client");
 </script>
+
 <button onclick="loadClient()">authorize and load</button>
 <button onclick="execute()">execute</button>
 
