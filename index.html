@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>OpenStreetMap Integration</title>
+    <title>Anastasiya Ter-Saakova. Paths and stories.</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <style>
@@ -11,56 +11,12 @@
     </style>
 </head>
 <body>
-    https://docs.google.com/spreadsheets/d/1v9qxDmXpAZehEUQoOeEy8pBmZUSHJJxZ5mb4f87O750/
     <div id="map"></div>
     <script src="index.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script>
-//   const G_CLIENT_ID = '481457614579-1a5ij9b3manvm3lmdo0s895dbc4p2lbl.apps.googleusercontent.com'; 
-  const G_API_KEY = 'AIzaSyB6OOIx_9z802K8Y3RpMlFw2tHBgnX_wrg';
-  const SPREADSHEET_ID = '1v9qxDmXpAZehEUQoOeEy8pBmZUSHJJxZ5mb4f87O750';
 
-// Function to get rows from a Google Sheet
-async function getRowsFromGoogleSheet(sheetId) {
-  try {
-    const response = await fetch(`https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`);
-    const text = await response.text();
-    const jsonString = /({.*})/.exec(text)[1];
-    const data = JSON.parse(jsonString);
-
-    // Extract the rows from the response (data.table.rows)
-    if (data && data.table && data.table.rows) {
-      const rows = data.table.rows.map((row) => row.c.map((cell) => cell.v));
-      return rows;
-    } else {
-      console.error('Error: Invalid response from Google Sheets API');
-      return null;
-    }
-  } catch (error) {
-    console.error('Error retrieving data:', error.message);
-    return null;
-  }
-}
-
-// Call the function with the sample spreadsheet ID
-const spreadsheetId = SPREADSHEET_ID; // Replace this with your actual spreadsheet ID
-getRowsFromGoogleSheet(spreadsheetId)
-  .then((rows) => {
-    if (rows) {
-      // Do something with the retrieved rows (e.g., integrate with Leaflet map)
-      console.log(rows);
-    }
-  })
-  .catch((error) => {
-    console.error('Error:', error.message);
-  });
-
-
-  
-</script>
-
-<button onclick="execute()">execute</button>
-
+    <div id="#cond"><h3>🛖 Конд</h3> Тут я была тьютором и мы фигачили! И защитились!</div>
+    <div id="#kanaker"><h3>🏠 Канакер-Зейтун</h3> А тут я жила и работала.</div>
 </body>
 </html>
