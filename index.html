@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenStreetMap Integration</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    https://docs.google.com/spreadsheets/d/1v9qxDmXpAZehEUQoOeEy8pBmZUSHJJxZ5mb4f87O750/
+    <div id="map"></div>
+    <script src="index.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+<script>
+  /**
+   * Sample JavaScript code for sheets.spreadsheets.get
+   * See instructions for running APIs Explorer code samples locally:
+   * https://developers.google.com/explorer-help/code-samples#javascript
+   */
+//   const G_CLIENT_ID = '481457614579-1a5ij9b3manvm3lmdo0s895dbc4p2lbl.apps.googleusercontent.com'; 
+  const G_API_KEY = 'AIzaSyB6OOIx_9z802K8Y3RpMlFw2tHBgnX_wrg';
+  const SPREADSHEET_ID = '1v9qxDmXpAZehEUQoOeEy8pBmZUSHJJxZ5mb4f87O750';
+
+  function loadClient() {
+    gapi.client.setApiKey(G_API_KEY);
+    return gapi.client.load("https://sheets.googleapis.com/$discovery/rest?version=v4")
+        .then(function() { console.log("GAPI client loaded for API"); },
+              function(err) { console.error("Error loading GAPI client for API", err); });
+  }
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  function execute() {
+    return gapi.client.sheets.spreadsheets.get({
+      "spreadsheetId": SPREADSHEET_ID
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+  gapi.load("client");
+</script>
+<button onclick="loadClient()">authorize and load</button>
+<button onclick="execute()">execute</button>
+
+</body>
+</html>
