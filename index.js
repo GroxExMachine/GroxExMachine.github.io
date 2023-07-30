@@ -37,9 +37,7 @@ async function getRowsFromGoogleSheet(sheetId) {
   }
 }
 
-// Call the function with the sample spreadsheet ID
-const spreadsheetId = SPREADSHEET_ID; // Replace this with your actual spreadsheet ID
-getRowsFromGoogleSheet(spreadsheetId)
+getRowsFromGoogleSheet(SPREADSHEET_ID)
   .then((rows) => {
     if (rows) {
       initMap(rows)
@@ -61,8 +59,6 @@ function initMap(locations) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Fetch data from the Google Sheet (Mock implementation)
-    // const locations = getRowsFromGoogleSheet(SPREADSHEET_ID);
     console.log(locations)
     locations.forEach((location) => {
         var marker = L.marker([location.lat, location.lng]).addTo(map);
@@ -70,9 +66,6 @@ function initMap(locations) {
             `<b>${location.title}</b><br>` +
             `<a href="${location.url}">${location.linkTitle}</a><br>` +
             location.description 
-          ).openPopup();
-      });
+        ).openPopup();
+    });
 }
-
-// Call the initMap function when the page loads
-// window.onload = initMap;
